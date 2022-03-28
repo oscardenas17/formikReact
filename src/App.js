@@ -1,43 +1,73 @@
-import { useFormik } from 'formik';
+import { useFormik } from "formik";
+
+const validate = (values)=>{
+ 
+    const errors = {}
+
+    if (!values.name) {
+      errors.name = "Requerido"
+    }else if (values.name.length < 5){
+      errors.name = "El nombre no puede ser menor a 5 letras"
+    } 
+
+    if (!values.lastname) {
+      errors.lastname = "Requerido"
+    }else if (values.lastname.length < 5){
+      errors.lastname = "El apellido no puede ser menor a 5 letras"
+    } 
+
+    return errors;
+  }
 
 
 function App() {
-
   const formik = useFormik({
-    initialValues:{
-      name: '',
-      lastname:'',
-      email:'',
+    initialValues: {
+      name: "",
+      lastname: "",
+      email: "",
     },
-    onSubmit: values=> console.log(values)
-  })
+    validate,
+    onSubmit: (values) => console.log(values),
+  });
 
   return (
-    <form onSubmit={formik.handleSubmit} >
-      <label >Nombre</label>
-      <input 
+    <form onSubmit={formik.handleSubmit}>
+      <label>Nombre</label>
+      <input
         type="text"
-        name='name'
+        name="name"
         onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         value={formik.values.name}
       />
-       <label >Apellido</label>
-      <input 
+      {formik.touched.name && formik.errors.name ? <div> {formik.errors.name} </div> :null }
+      <br />
+
+      <label>Apellido</label>
+      <input
         type="text"
-        name='lastname'
+        name="lastname"
         onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         value={formik.values.lastname}
       />
-       <label >Email</label>
-      <input 
+        {formik.touched.lastname && formik.errors.lastname ? <div> {formik.errors.lastname} </div> :null }
+      <br />
+
+      <label>Email</label>
+      <input
         type="email"
-        name='email'
+        name="email"
         onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         value={formik.values.email}
       />
-      <button type='submit'>Enviar</button>
+       {formik.touched.email && formik.errors.email ? <div> {formik.errors.email} </div> :null }
+      <br />
+      <button type="submit">Enviar</button>
     </form>
-  )
-};
+  );
+}
 
 export default App;
