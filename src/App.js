@@ -30,6 +30,10 @@ function App() {
         <Form>
           <label>Nombre</label>
           <Field name="name" type="text"/>
+          <Field name="select" as="select" className="clase">
+            <option value="valor1">1</option>
+            <option value="valor2">2</option>
+          </Field>
           <ErrorMessage name="name"/>
           <br />
 
