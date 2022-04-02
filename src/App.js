@@ -26,7 +26,7 @@ function App() {
       validate={validate}
       onSubmit={(values) => console.log(values)}
     >
-      {(formik) => (
+      
         <Form>
           <label>Nombre</label>
           <Field name="name" type="text"/>
@@ -44,7 +44,7 @@ function App() {
           <br />
           <button type="submit">Enviar</button>
         </Form>
-      )}
+    
     </Formik>
   );
 }
