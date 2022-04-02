@@ -1,4 +1,4 @@
-import { useFormik } from "formik";
+import {  useFormik } from "formik";
 
 const validate = (values)=>{
  
@@ -33,37 +33,22 @@ function App() {
 
   return (
     <form onSubmit={formik.handleSubmit}>
+
       <label>Nombre</label>
-      <input
-        type="text"
-        name="name"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.name}
-      />
-      {formik.touched.name && formik.errors.name ? <div> {formik.errors.name} </div> :null }
+      <input type="text" {...formik.getFieldProps('name')}/>
+      {formik.touched.name && formik.errors.name ? 
+      <div> {formik.errors.name} </div> :null }
       <br />
 
       <label>Apellido</label>
-      <input
-        type="text"
-        name="lastname"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.lastname}
-      />
+      <input type="text" {...formik.getFieldProps('lastname')}/>
         {formik.touched.lastname && formik.errors.lastname ? <div> {formik.errors.lastname} </div> :null }
       <br />
 
       <label>Email</label>
-      <input
-        type="email"
-        name="email"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.email}
-      />
-       {formik.touched.email && formik.errors.email ? <div> {formik.errors.email} </div> :null }
+      <input type="text" {...formik.getFieldProps('email')}/>
+       {formik.touched.email && formik.errors.email ? 
+       <div> {formik.errors.email} </div> :null }
       <br />
       <button type="submit">Enviar</button>
     </form>
