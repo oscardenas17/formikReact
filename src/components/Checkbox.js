@@ -1,6 +1,6 @@
 import { useField } from "formik";
 
-const Checkbox = ( {children, ... props}) =>{
+const Checkbox = ( {children, ...props}) =>{
     const [field, meta] = useField( {...props, type: 'checkbox'} )
     console.log(field)
     return(
