@@ -2,6 +2,7 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import TextInput from "./components/TextInput";
 import Checkbox from "./components/Checkbox";
+import Radio from "./components/Radio";
 import Select from "./components/Select";
 
 const validate = (values) => {
@@ -19,13 +20,17 @@ const validate = (values) => {
     errors.lastname = "El apellido no puede ser menor a 5 letras";
   }
 
+  if (!values.radio) {
+    errors.radio = "Requerido";
+  } 
+
   return errors;
 };
 
 function App() {
   return (
     <Formik
-      initialValues={{ name: '', lastname: "", email: '', tipo:'' }}
+      initialValues={{ name: '', lastname: "", email: '', tipo:'' , radio:''}}
       validate={validate}
       onSubmit={(values) => console.log(values)}
     >
@@ -43,7 +48,14 @@ function App() {
           <option value="luffy">Luffy</option>
           <option value="zoro">Zoro</option>
          </Select>
+         <br />
         <Checkbox name="accept">Aceptar</Checkbox>
+        <br />
+        <Radio name="radio" value="Goku" label="Goku" /> 
+        <Radio name="radio" value="Vegeta" label="Vegeta"/> 
+        <Radio name="radio" value="Trunks" label="Trunks"/> 
+
+        <ErrorMessage name="radio"/>
 
         <button type="submit">Enviar</button>
 
