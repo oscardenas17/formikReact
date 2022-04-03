@@ -1,7 +1,8 @@
 //formik  component
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import TextInput from './components/TextInput'
-import Checkbox from './components/Checkbox'
+import TextInput from "./components/TextInput";
+import Checkbox from "./components/Checkbox";
+import Select from "./components/Select";
 
 const validate = (values) => {
   const errors = {};
@@ -24,37 +25,29 @@ const validate = (values) => {
 function App() {
   return (
     <Formik
-      initialValues={{ name: "", lastname: "", email: "" }}
+      initialValues={{ name: '', lastname: "", email: '', tipo:'' }}
       validate={validate}
       onSubmit={(values) => console.log(values)}
     >
-      
-        <Form> 
-          <TextInput name="name" label="Nombre" />  
+      <Form>
+        <TextInput name="name" label="Nombre" />      
+        <br />
 
+        <TextInput name="lastname" label="Apellido" />
+        <br />
 
-          {/* <Field name="select" as="select" className="clase">
-            <option value="valor1">1</option>
-            <option value="valor2">2</option>
-          </Field> */}
-          {/* <ErrorMessage name="name"/> */}
-          <br />
+        <TextInput name="email" label="Correo" />
+        <br />
+        <Select label="Tipo" name="tipo">
+          <option value="">Seleccione</option>
+          <option value="luffy">Luffy</option>
+          <option value="zoro">Zoro</option>
+         </Select>
+        <Checkbox name="accept">Aceptar</Checkbox>
 
-          <label>Apellido</label>
-          <Field name="lastname" type="text"/>
-          <ErrorMessage name="lastname"/>
-          <br />
+        <button type="submit">Enviar</button>
 
-          <label>Email</label>
-          <Field name="email" type="email"/>
-          <ErrorMessage name="email"/>
-          <br />
-          <Checkbox name="accept">
-            Aceptar
-          </Checkbox>
-          <button type="submit">Enviar</button>
-        </Form>
-    
+      </Form>
     </Formik>
   );
 }
